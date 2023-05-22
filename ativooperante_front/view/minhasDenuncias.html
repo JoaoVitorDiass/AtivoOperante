@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ativo e Operante</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
+    <link rel="stylesheet" href="../plugins/fontawesome/css/all.min.css">
+    <script src="../plugins/jquery-3.6.4.js"></script>
+    <script src="../plugins/moment.min.js"></script>
+    <script src="../plugins/sweetalert2@11.js"></script>
+
+    <!-- Plugin pro Datapicker novo -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.1/js/bootstrap-datepicker.min.js'></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
+    <script src="../controller-view/controller-minhasDenuncias.js"></script>
+
+    <style>
+        body {
+            /* background-color: beige; */
+            width: 93%;
+            margin: auto;
+            background-color: transparent;
+            padding-top: 40px;
+            /* background-color: red; */
+        }
+        table {
+            width: 70%;
+        }
+        i:hover {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <table id="denuncias" name="denuncias" class="table table-striped">
+        <thead class="thead-light">
+            <tr>
+                <th>ID</th>
+                <th>Titulo</th>
+                <th>Urgência</th>
+                <th>Orgão</th>
+                <th>Tipo</th>
+                <th>Data</th>
+                <th></th>
+            </tr>
+        </thead>
+    </table>
+</body>
+</html>

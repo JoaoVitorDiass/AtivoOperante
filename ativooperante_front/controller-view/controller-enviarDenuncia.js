@@ -2,10 +2,10 @@ function enviarDenuncia() {
     if(!validarFormulario()) {
         
         // para usar na propria maquina
-        // const URL_TO_FETCH = "http://localhost:8080/apis/cidadao/add-denuncia";
+        const URL_TO_FETCH = "http://localhost:8080/apis/cidadao/add-denuncia";
 
         // para usar com o live server em outro pc
-        const URL_TO_FETCH = "http://192.168.0.135:8080/apis/cidadao/add-denuncia";
+        // const URL_TO_FETCH = "http://192.168.0.135:8080/apis/cidadao/add-denuncia";
 
 
         let json = `{
@@ -16,14 +16,14 @@ function enviarDenuncia() {
             "data":     "${$("#data").val()}",
             "orgao":    {
                 "id":   "${$("#orgao").val()}",
-                "nome": ""
+                "nome": "${document.querySelector("#orgao").options[document.querySelector("#orgao").selectedIndex].innerHTML}"
             },
             "tipo":     {
                 "id":   "${$("#tipo").val()}",
-                "nome": ""
+                "nome": "${document.querySelector("#tipo").options[document.querySelector("#tipo").selectedIndex].innerHTML}"
             },
             "usuario":  {
-                "id":   "",
+                "id":   "1",
                 "cpf":  "",
                 "email":"",
                 "senha":"",
@@ -90,12 +90,12 @@ function CarregarFormulario() {
     let selectTipo  = $("#tipo");
 
     // para usar na propria maquina
-    // const URL_ORGAO = "http://localhost:8080/apis/cidadao/get-orgaos";
-    // const URL_TIPO =  "http://localhost:8080/apis/cidadao/get-tipos";
+    const URL_ORGAO = "http://localhost:8080/apis/cidadao/get-orgaos";
+    const URL_TIPO =  "http://localhost:8080/apis/cidadao/get-tipos";
 
     // para usar com o live server em outro pc
-    const URL_ORGAO = "http://192.168.0.135:8080/apis/cidadao/get-orgaos";
-    const URL_TIPO =  "http://192.168.0.135:8080/apis/cidadao/get-tipos";
+    // const URL_ORGAO = "http://192.168.0.135:8080/apis/cidadao/get-orgaos";
+    // const URL_TIPO =  "http://192.168.0.135:8080/apis/cidadao/get-tipos";
 
     fetch(URL_ORGAO, {
         method: 'GET',
@@ -118,7 +118,6 @@ function CarregarFormulario() {
     })
     .catch(err => console.log(err));
 }
-
 
 $(document).ready(() => {
     CarregarFormulario()
