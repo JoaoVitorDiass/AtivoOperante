@@ -9,14 +9,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.ativooperante_back.db.entidades.Denuncia;
 import com.example.ativooperante_back.db.entidades.Orgao;
 import com.example.ativooperante_back.db.entidades.Tipo;
 import com.example.ativooperante_back.db.repository.DenunciaRepository;
 import com.example.ativooperante_back.db.repository.OrgaoRepository;
 import com.example.ativooperante_back.db.repository.TipoRepository;
-
-import jakarta.websocket.server.PathParam;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
