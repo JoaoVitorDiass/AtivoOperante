@@ -1,18 +1,43 @@
 function enviarDenuncia() {
     if(!validarFormulario()) {
-        console.log("entrou")
-        let formulario = document.getElementById("denuncia")
-        let formData = new FormData(formulario);
         
         // para usar na propria maquina
-        // const URL_TO_FETCH = "http://localhost:8080/apis/cidadao/dd-denuncia";
+        // const URL_TO_FETCH = "http://localhost:8080/apis/cidadao/add-denuncia";
 
         // para usar com o live server em outro pc
         const URL_TO_FETCH = "http://192.168.0.135:8080/apis/cidadao/add-denuncia";
 
+
+        let json = `{
+            "id":       "",
+            "titulo":   "${$("#titulo").val()}",
+            "texto":    "${$("#texto").val()}",
+            "urgencia": "${$("#urgencia").val()}",
+            "data":     "${$("#data").val()}",
+            "orgao":    {
+                "id":   "${$("#orgao").val()}",
+                "nome": ""
+            },
+            "tipo":     {
+                "id":   "${$("#tipo").val()}",
+                "nome": ""
+            },
+            "usuario":  {
+                "id":   "",
+                "cpf":  "",
+                "email":"",
+                "senha":"",
+                "nivel":""
+            },
+            "feedback": null
+        }`
+        
+        let denuncia = JSON.parse(json)
+        
+        console.log(denuncia)
         fetch(URL_TO_FETCH, {
             method: 'POST',
-            body: formData,
+            body: denuncia,
         })
         .then(response => response.text())
         .then(result => {
@@ -25,6 +50,7 @@ function validarFormulario() {
     let msg = "";
     let flag = false;
 
+    // return flag;
     if($("#titulo").val() == "") {
         msg += "Titulo obrigatório!<br>";
         flag = true;
