@@ -27,8 +27,7 @@
     <style>
         body {
             /* background-color: beige; */
-            width: 80%;
-            height: 100vh;
+            width: 70%;
             margin: auto;
             background-color: transparent;
         }
@@ -36,14 +35,16 @@
 </head>
 
 <body>
-    <form id="formEnviarDenuncia" name="formEnviarDenuncia" style="padding-top: 40px;">
+    <form id="denuncia" name="denuncia" style="padding-top: 40px;">
 
-        <h1 style="text-align: center; margin-bottom: 40px;">Enviar Denuncia</h1>
+        <h1 style="text-align: center; margin-bottom: 40px;">Enviar Denúncia</h1>
 
         <!-- Text input -->
         <div class="form-outline mb-4">
             <input type="text" id="titulo" name="titulo" class="form-control" />
-            <label class="form-label" for="titulo">Titulo</label>
+            <label class="form-label" for="titulo">Titulo
+                <span style="font-weight: bold; color: red;">*</span>
+            </label>
         </div>
 
         <!-- 2 column grid layout with text inputs for the first and last names -->
@@ -52,7 +53,9 @@
                 <select name="orgao" id="orgao" class="form-select">
                     <option value="" selected>Selecione o orgão responsavel ...</option>
                 </select>
-                <label class="form-label" for="orgao">Orgão</label>
+                <label class="form-label" for="orgao">Orgão
+                    <span style="font-weight: bold; color: red;">*</span>
+                </label>
             </div>
             <div class="col">
                 <div class="form-outline">
@@ -64,7 +67,9 @@
                         <option value="3">Urgente</option>
                         <option value="4">Extremamente urgente</option>
                     </select>
-                    <label class="form-label" for="form6Example2">Urgencia</label>
+                    <label class="form-label" for="form6Example2">Urgencia
+                        <span style="font-weight: bold; color: red;">*</span>
+                    </label>
                 </div>
             </div>
         </div>
@@ -74,11 +79,15 @@
                 <select name="tipo" id="tipo" class="form-select">
                     <option value="" selected>Selecione o tipo da denuncia ...</option>
                 </select>
-                <label class="form-label" for="orgao">Tipo</label>
+                <label class="form-label" for="tipo">Tipo
+                    <span style="font-weight: bold; color: red;">*</span>
+                </label>
             </div>
             <div class="col">
                 <input type="date" id="data" name="data" class="form-control" />
-                <label class="form-label" for="data">Data</label>
+                <label class="form-label" for="data">Data
+                    <span style="font-weight: bold; color: red;">*</span>
+                </label>
             </div>
         </div>
 
@@ -95,7 +104,9 @@
         <!-- Message input -->
         <div class="form-outline mb-2">
             <textarea class="form-control" id="texto" name="texto" rows="4"></textarea>
-            <label class="form-label" for="texto">Texto</label>
+            <label class="form-label" for="texto">Texto
+                <span style="font-weight: bold; color: red;">*</span>
+            </label>
         </div>
 
         <!-- Submit button -->

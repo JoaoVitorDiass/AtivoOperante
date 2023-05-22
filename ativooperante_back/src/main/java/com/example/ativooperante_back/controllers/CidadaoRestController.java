@@ -17,6 +17,7 @@ import com.example.ativooperante_back.db.repository.TipoRepository;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+// @CrossOrigin
 @CrossOrigin
 @RestController
 @RequestMapping("apis/cidadao")

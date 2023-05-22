@@ -1,9 +1,15 @@
 function enviarDenuncia() {
-    if(validarFormulario()) {
+    if(!validarFormulario()) {
+        console.log("entrou")
+        let formulario = document.getElementById("denuncia")
+        let formData = new FormData(formulario);
+        
+        // para usar na propria maquina
+        // const URL_TO_FETCH = "http://localhost:8080/apis/cidadao/dd-denuncia";
 
-        let formData = new FormData($("#formEnviarDenuncia"));
+        // para usar com o live server em outro pc
+        const URL_TO_FETCH = "http://192.168.0.135:8080/apis/cidadao/add-denuncia";
 
-        const URL_TO_FETCH = "localhost:8080/";
         fetch(URL_TO_FETCH, {
             method: 'POST',
             body: formData,
@@ -43,7 +49,6 @@ function validarFormulario() {
         msg += "Texto obrigatório!<br>";
         flag = true;
     }
-    
     if(flag) {
         Swal.fire({
             icon: 'error',
@@ -51,4 +56,44 @@ function validarFormulario() {
             html: msg,
         })
     }
+    return flag;
 }
+
+function CarregarFormulario() {
+    let selectOrgao = $("#orgao");
+    let selectTipo  = $("#tipo");
+
+    // para usar na propria maquina
+    // const URL_ORGAO = "http://localhost:8080/apis/cidadao/get-orgaos";
+    // const URL_TIPO =  "http://localhost:8080/apis/cidadao/get-tipos";
+
+    // para usar com o live server em outro pc
+    const URL_ORGAO = "http://192.168.0.135:8080/apis/cidadao/get-orgaos";
+    const URL_TIPO =  "http://192.168.0.135:8080/apis/cidadao/get-tipos";
+
+    fetch(URL_ORGAO, {
+        method: 'GET',
+    })
+    .then(response => response.json())
+    .then(result => {
+        result.forEach(element => {
+            selectOrgao.append(`<option value='${element.id}'>${element.nome}</option>`)
+        });
+    })
+    .catch(err => console.log(err));
+    fetch(URL_TIPO, {
+        method: 'GET',
+    })
+    .then(response => response.json())
+    .then(result => {
+        result.forEach(element => {
+            selectTipo.append(`<option value='${element.id}'>${element.nome}</option>`)
+        });
+    })
+    .catch(err => console.log(err));
+}
+
+
+$(document).ready(() => {
+    CarregarFormulario()
+})
