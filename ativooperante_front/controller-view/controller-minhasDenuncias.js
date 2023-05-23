@@ -1,17 +1,16 @@
 function carregaDados() {
 
     // para usar na propria maquina
-    const URL_TO_FETCH = "http://localhost:8080/apis/cidadao/get-denuncia/2";
+    // const URL_TO_FETCH = "http://localhost:8080/apis/cidadao/get-denuncia/2";
 
     // para usar com o live server em outro pc
-    // const URL_TO_FETCH = "http://localhost:8080/apis/cidadao/get-denuncia/2";
+    const URL_TO_FETCH = "http://192.168.0.135:8080/apis/cidadao/get-denuncia/2";
 
     fetch(URL_TO_FETCH, {
         method: 'GET',
     })
     .then(response => response.json())
     .then(result => {
-        console.log(result)
         result.forEach(element => {
             switch(element.urgencia) {
                 case 1: element.urgencia = "Normal"; break;
@@ -43,7 +42,7 @@ function carregaDados() {
                         "data": "data",
                     },
                     {
-                        "data": 'cod',
+                        "data": 'id',
                         render: function (data, type) {
                             if (type === 'display') {
 
@@ -63,8 +62,8 @@ function carregaDados() {
                 "lengthChange": false,
                 language: {
                     "info": "Exibindo de _START_ a _END_ de _TOTAL_ registros",
-                    "infoEmpty": "0 Registros de Clientes",
-                    "emptyTable": "Nenhum cliente foi encontrado!",
+                    "infoEmpty": "",
+                    "emptyTable": "Nenhuma denúncia foi encontrada!",
                     oPaginate: {
                         sNext: 'Próximo',
                         sPrevious: 'Anterior',
@@ -76,7 +75,46 @@ function carregaDados() {
                     $(".paginate_button ").on("click", () => {
                         modifica_table();
                     })
-                }
+                },
+                "columnDefs": [
+                    {
+                        "targets": 0, // your case first column
+                        "className": "text-center",
+                        "width": "5%"
+                    },
+                    {
+                        "targets": 1,
+                        "className": "text-left",
+                        "width": "30%"
+                    },
+                    {
+                        "targets": 2,
+                        "className": "text-center",
+                        "width": "20%"
+                    },
+                    {
+                        "targets": 3,
+                        "className": "text-center",
+                        "width": "10%"
+                    },
+                    {
+                        "targets": 4,
+                        "className": "text-center",
+                        "width": "10%"
+                    }
+                    ,
+                    {
+                        "targets": 5,
+                        "className": "text-center",
+                        "width": "15%"
+                    },
+                    {
+                        "targets": 6,
+                        "className": "text-center",
+                        "width": "10%"
+                    }
+                ],
+                rowReorder: true,
             });
         } else {
             let tabela = $('#denuncias').DataTable();
@@ -86,6 +124,24 @@ function carregaDados() {
         }
     })
     .catch(err => console.log(err));
+}
+
+function deletar(id) {
+    // para usar na propria maquina
+    // const URL_TO_FETCH = "http://localhost:8080/apis/admin/del-denuncia"+id
+    
+    // para usar na outra maquina
+    const URL_TO_FETCH = "http://192.168.0.135:8080/apis/admin/del-denuncia/"+id
+    fetch(URL_TO_FETCH, {
+        method: 'GET',
+    })
+    .then(response => response.text())
+    .then(result => {
+        console.log(result)
+        window.location.reload()
+    })
+    .catch(err => console.log(err));
+
 }
 
 $(document).ready(() => {

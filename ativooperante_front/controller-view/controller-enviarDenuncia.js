@@ -2,10 +2,10 @@ function enviarDenuncia() {
     if(!validarFormulario()) {
         
         // para usar na propria maquina
-        const URL_TO_FETCH = "http://localhost:8080/apis/cidadao/add-denuncia";
+        // const URL_TO_FETCH = "http://localhost:8080/apis/cidadao/add-denuncia";
 
         // para usar com o live server em outro pc
-        // const URL_TO_FETCH = "http://192.168.0.135:8080/apis/cidadao/add-denuncia";
+        const URL_TO_FETCH = "http://192.168.0.135:8080/apis/cidadao/add-denuncia";
 
 
         let json = `{
@@ -31,13 +31,41 @@ function enviarDenuncia() {
             },
             "feedback": null
         }`
+
+        let json2 = `
+        [
+            {
+                "data": "${$("#data").val()}",
+                "feedback": null,
+                "id": null,
+                "orgao": {
+                    "id": ${$("#orgao").val()},
+                    "nome": "${document.querySelector("#orgao").options[document.querySelector("#orgao").selectedIndex].innerHTML}"
+                },
+                "texto": "${$("#texto").val()}",
+                "tipo": {
+                    "id": ${$("#tipo").val()},
+                    "nome": "${document.querySelector("#tipo").options[document.querySelector("#tipo").selectedIndex].innerHTML}"
+                },
+                "titulo": "${$("#titulo").val()}",
+                "urgencia": ${$("#urgencia").val()},
+                "usuario": {
+                    "cpf": 47369606805,
+                    "email": "JOOVITOR@GMAIL.COM",
+                    "id": 2,
+                    "nivel": 1,
+                    "senha": 123
+                }
+            }
+        ]`
         
         let denuncia = JSON.parse(json)
         
         console.log(denuncia)
         fetch(URL_TO_FETCH, {
             method: 'POST',
-            body: denuncia,
+            body: json2,
+            headers:{"content-type":"application/json"},
         })
         .then(response => response.text())
         .then(result => {
@@ -90,12 +118,12 @@ function CarregarFormulario() {
     let selectTipo  = $("#tipo");
 
     // para usar na propria maquina
-    const URL_ORGAO = "http://localhost:8080/apis/cidadao/get-orgaos";
-    const URL_TIPO =  "http://localhost:8080/apis/cidadao/get-tipos";
+    // const URL_ORGAO = "http://localhost:8080/apis/cidadao/get-orgaos";
+    // const URL_TIPO =  "http://localhost:8080/apis/cidadao/get-tipos";
 
     // para usar com o live server em outro pc
-    // const URL_ORGAO = "http://192.168.0.135:8080/apis/cidadao/get-orgaos";
-    // const URL_TIPO =  "http://192.168.0.135:8080/apis/cidadao/get-tipos";
+    const URL_ORGAO = "http://192.168.0.135:8080/apis/cidadao/get-orgaos";
+    const URL_TIPO =  "http://192.168.0.135:8080/apis/cidadao/get-tipos";
 
     fetch(URL_ORGAO, {
         method: 'GET',

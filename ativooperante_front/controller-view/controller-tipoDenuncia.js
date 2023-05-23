@@ -1,10 +1,10 @@
 function carregaDados() {
 
     // para usar na propria maquina
-    const URL_TO_FETCH = "http://localhost:8080/apis/admin/get-tipos"
+    // const URL_TO_FETCH = "http://localhost:8080/apis/admin/get-tipos"
 
     // para usar com o live server em outro pc
-    // const URL_TO_FETCH = "http://localhost:8080/apis/admin/get-tipos";
+    const URL_TO_FETCH = "http://192.168.0.135:8080/apis/admin/get-tipos";
 
     fetch(URL_TO_FETCH, {
         method: 'GET',
@@ -28,8 +28,8 @@ function carregaDados() {
 
                                 return `<i class="fa-solid fa-trash text-lg" onclick="deletar(${data})">
                                     </i>
-                                    <i class="fa-solid fa-pen-to-square text-lg" onclick="Modal(${data}, 'Alterar')">
-                                    </i>`
+                                    <!--<i class="fa-solid fa-pen-to-square text-lg" onclick="Modal(${data}, 'Alterar')">
+                                    </i>-->`
                             }
 
                             return data;
@@ -42,8 +42,8 @@ function carregaDados() {
                 "lengthChange": false,
                 language: {
                     "info": "Exibindo de _START_ a _END_ de _TOTAL_ registros",
-                    "infoEmpty": "0 Registros de Clientes",
-                    "emptyTable": "Nenhum cliente foi encontrado!",
+                    "infoEmpty": "",
+                    "emptyTable": "Nenhum Tipo de denúncia foi encontrada!",
                     oPaginate: {
                         sNext: 'Próximo',
                         sPrevious: 'Anterior',
@@ -94,9 +94,11 @@ function novo() {
 
         <h1 style="text-align: center; margin-bottom: 40px;">Novo Tipo de Denúncia</h1>
 
+        <input type="hidden" id="id" name="id" value="">
+
         <!-- Text input -->
         <div class="form-outline mb-4">
-            <input type="text" id="tip_nome" name="tip_nome" class="form-control" />
+            <input type="text" id="nome" name="nome" class="form-control" />
             <label class="form-label" for="titulo">Descrição
                 <span style="font-weight: bold; color: red;">*</span>
             </label>
@@ -116,26 +118,54 @@ function voltar() {
 
 function enviarTipo(){ 
     if(validarCampos()) {
-        let tipo = `{
-            "tip_id":    "",
-            "tip_nome":  "${$("#tip_nome").val()}"
-        }`
-        let json = JSON.parse(tipo)
+        
+        var object = {};
+        let formData=new FormData(document.querySelector("#tipo"));
+        formData.forEach(function (value, key) {
+            object[key] = value;
+        });
+        
+        if(document.getElementById("id").value!=="")
+        {
+            object.id=document.getElementById("id").value;
+            
+        }
+        var json = JSON.stringify(object);
 
-        console.log(json)
         // para usar na propria maquina
-        const URL_TO_FETCH = "http://localhost:8080/apis/admin/save-tipo"
-
+        // const URL_TO_FETCH = "http://localhost:8080/apis/admin/save-tipo"
+        
+        // para usar na outra maquina
+        const URL_TO_FETCH = "http://192.168.0.135:8080/apis/admin/save-tipo"
+        
         fetch(URL_TO_FETCH, {
             method: 'POST',
             body: json,
+            headers:{"content-type":"application/json"},
         })
-        .then(response => response.text())
+        .then(response => response.json())
         .then(result => {
-            console.log(result)
+            voltar()
         })
         .catch(err => console.log(err));
     }
+}
+
+function deletar(id) {
+    // para usar na propria maquina
+    // const URL_TO_FETCH = "http://localhost:8080/apis/admin/save-tipo"
+    
+    // para usar na outra maquina
+    const URL_TO_FETCH = "http://192.168.0.135:8080/apis/admin/del-tipo/"+id;
+    fetch(URL_TO_FETCH, {
+        method: 'GET',
+    })
+    .then(response => response.text())
+    .then(result => {
+        window.location.reload()
+    })
+    .catch(err => console.log(err));
+
 }
 
 function validarCampos() {
@@ -150,6 +180,10 @@ function validarCampos() {
     }
     return true;
 }
+
+
+
+
 $(document).ready(() => {
     carregaDados()
 })
