@@ -4,7 +4,9 @@ function EnviarDenuncia() {
 function MinhasDenuncias() {
     document.getElementById("mainIframe").src = "/ativooperante_front/view/minhasDenuncias.html"
 }
-
+function TipoDenuncia() {
+    document.getElementById("mainIframe").src = "/ativooperante_front/view/tipoDenuncia.html"
+}
 
 
 $(document).ready(() => {
