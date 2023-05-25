@@ -1,10 +1,10 @@
 function carregaDados() {
 
     // para usar na propria maquina
-    // const URL_TO_FETCH = "http://localhost:8080/apis/cidadao/get-denuncia/2";
+    const URL_TO_FETCH = "http://localhost:8080/apis/cidadao/get-denuncia/2";
 
     // para usar com o live server em outro pc
-    const URL_TO_FETCH = "http://192.168.0.135:8080/apis/cidadao/get-denuncia/2";
+    // const URL_TO_FETCH = "http://192.168.0.135:8080/apis/cidadao/get-denuncia/2";
 
     fetch(URL_TO_FETCH, {
         method: 'GET',
@@ -128,10 +128,10 @@ function carregaDados() {
 
 function deletar(id) {
     // para usar na propria maquina
-    // const URL_TO_FETCH = "http://localhost:8080/apis/admin/del-denuncia"+id
+    const URL_TO_FETCH = "http://localhost:8080/apis/admin/del-denuncia"+id
     
     // para usar na outra maquina
-    const URL_TO_FETCH = "http://192.168.0.135:8080/apis/admin/del-denuncia/"+id
+    // const URL_TO_FETCH = "http://192.168.0.135:8080/apis/admin/del-denuncia/"+id
     fetch(URL_TO_FETCH, {
         method: 'GET',
     })

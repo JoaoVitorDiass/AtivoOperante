@@ -1,7 +1,7 @@
 function carregaDados() {
 
     // para usar na propria maquina
-    const URL_TO_FETCH = "http://localhost:8080/apis/admin/get-tipos"
+    const URL_TO_FETCH = "http://localhost:8080/apis/admin/get-orgaos"
 
     // para usar com o live server em outro pc
     // const URL_TO_FETCH = "http://192.168.0.135:8080/apis/admin/get-tipos";
@@ -11,8 +11,9 @@ function carregaDados() {
     })
     .then(response => response.json())
     .then(result => {
-        if (!$.fn.dataTable.isDataTable('#tipoDenuncia')) {
-            $('#tipoDenuncia').DataTable({
+        console.log(result)
+        if (!$.fn.dataTable.isDataTable('#orgaos')) {
+            $('#orgaos').DataTable({
                 data: result,
                 columns: [
                     {
@@ -90,22 +91,22 @@ function novo() {
     <div style="width: 86%; margin: auto;">
         <button type="button" style="margin-bottom: 20px; padding: 5px 30px; font-weight: bold;" class="btn btn-danger" onclick="voltar()">Voltar</button>
     </div>
-    <form id="tipo" name="tipo" cellspacing="0" style="width:50%; margin: auto; margin-top: 50px">
+    <form id="orgao" name="orgao" cellspacing="0" style="width:50%; margin: auto; margin-top: 50px">
 
-        <h1 style="text-align: center; margin-bottom: 40px;">Novo Tipo de Denúncia</h1>
+        <h1 style="text-align: center; margin-bottom: 40px;">Novo Orgão</h1>
 
         <input type="hidden" id="id" name="id" value="">
 
         <!-- Text input -->
         <div class="form-outline mb-4">
             <input type="text" id="nome" name="nome" class="form-control" />
-            <label class="form-label" for="titulo">Descrição
+            <label class="form-label" for="titulo">Nome
                 <span style="font-weight: bold; color: red;">*</span>
             </label>
         </div>
 
         <!-- Submit button -->
-        <button type="button" onclick="enviarTipo()" class="btn btn-primary btn-block mb-4">Enviar</button>
+        <button type="button" onclick="enviarOrgao()" class="btn btn-primary btn-block mb-4">Enviar</button>
     </form>
     `
     $("body").empty()
@@ -116,11 +117,11 @@ function voltar() {
     document.location.reload()
 }
 
-function enviarTipo(){ 
+function enviarOrgao(){ 
     if(validarCampos()) {
         
         var object = {};
-        let formData=new FormData(document.querySelector("#tipo"));
+        let formData=new FormData(document.querySelector("#orgao"));
         formData.forEach(function (value, key) {
             object[key] = value;
         });
@@ -133,10 +134,10 @@ function enviarTipo(){
         var json = JSON.stringify(object);
 
         // para usar na propria maquina
-        const URL_TO_FETCH = "http://localhost:8080/apis/admin/save-tipo"
+        const URL_TO_FETCH = "http://localhost:8080/apis/admin/save-orgao"
         
         // para usar na outra maquina
-        // const URL_TO_FETCH = "http://192.168.0.135:8080/apis/admin/save-tipo"
+        // const URL_TO_FETCH = "http://192.168.0.135:8080/apis/admin/save-orgao"
         
         fetch(URL_TO_FETCH, {
             method: 'POST',
@@ -145,6 +146,7 @@ function enviarTipo(){
         })
         .then(response => response.json())
         .then(result => {
+            console.log(result)
             voltar()
         })
         .catch(err => console.log(err));
@@ -153,7 +155,7 @@ function enviarTipo(){
 
 function deletar(id) {
     // para usar na propria maquina
-    const URL_TO_FETCH = "http://localhost:8080/apis/admin/save-tipo"
+    const URL_TO_FETCH = "http://localhost:8080/apis/admin/del-orgao/"+id
     
     // para usar na outra maquina
     // const URL_TO_FETCH = "http://192.168.0.135:8080/apis/admin/del-tipo/"+id;
@@ -162,6 +164,7 @@ function deletar(id) {
     })
     .then(response => response.text())
     .then(result => {
+        console.log(result)
         window.location.reload()
     })
     .catch(err => console.log(err));
@@ -170,7 +173,7 @@ function deletar(id) {
 
 function validarCampos() {
     
-    if($("#tip_nome").val() == "") {
+    if($("#nome").val() == "") {
         Swal.fire({
             icon: 'error',
             title: 'Campos Necessários!',
@@ -180,9 +183,6 @@ function validarCampos() {
     }
     return true;
 }
-
-
-
 
 $(document).ready(() => {
     carregaDados()

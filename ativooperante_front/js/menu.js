@@ -7,7 +7,9 @@ function MinhasDenuncias() {
 function TipoDenuncia() {
     document.getElementById("mainIframe").src = "/ativooperante_front/view/tipoDenuncia.html"
 }
-
+function Orgaos() {
+    document.getElementById("mainIframe").src = "/ativooperante_front/view/orgaos.html"
+}
 
 $(document).ready(() => {
     $(".nav-link").on('click', () =>{ 
