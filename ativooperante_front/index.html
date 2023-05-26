@@ -65,41 +65,40 @@
                                             <button type="button" class="btn btn-outline-danger" id="modalCadastrar" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                                                 Create new
                                             </button>
-                                            <!-- Modal -->
-                                            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                                <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                    <h5 class="modal-title" id="staticBackdropLabel">Create Account</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                    </form>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                            <h5 class="modal-title" id="staticBackdropLabel">Create Account</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                                <form id="formCadUsuario" name="formCadUsuario" action="">
+                                                    <div class="modal-body">
+                                                        <input type="hidden" id="id" name="id" value="">
+                                                        <div class="input-group mb-3">
+                                                            <span class="input-group-text" id="basic-addon1">@</span>
+                                                            <input id="email" name="email" type="text" class="form-control" placeholder="E-mail" aria-label="Username" aria-describedby="basic-addon1">
+                                                        </div>
+                                                        <div class="input-group mb-3">
+                                                            <span class="input-group-text" id="basic-addon1">#</span>
+                                                            <input id="senha" name="senha" type="number" class="form-control" placeholder="Senha" aria-label="senha" aria-describedby="basic-addon1">
+                                                        </div>
+                                                        <div class="input-group mb-3">
+                                                            <span class="input-group-text" id="basic-addon1">CPF</span>
+                                                            <input id="cpf" name="cpf" type="text" class="form-control" placeholder="CPF" aria-label="CPF" aria-describedby="basic-addon1" oninput="mCpf()" >
+                                                        </div>
+                                                        <input type="hidden" id="nivel" name="nivel" value="1">
                                                     </div>
-                                                        <form id="formCadUsuario" name="formCadUsuario" action="">
-                                                            <div class="modal-body">
-                                                                <input type="hidden" id="id" name="id" value="">
-                                                                <div class="input-group mb-3">
-                                                                    <span class="input-group-text" id="basic-addon1">@</span>
-                                                                    <input id="email" type="text" class="form-control" placeholder="E-mail" aria-label="Username" aria-describedby="basic-addon1">
-                                                                </div>
-                                                                <div class="input-group mb-3">
-                                                                    <span class="input-group-text" id="basic-addon1">#</span>
-                                                                    <input id="senha" name="senha" type="password" class="form-control" placeholder="Senha" aria-label="senha" aria-describedby="basic-addon1">
-                                                                </div>
-                                                                <div class="input-group mb-3">
-                                                                    <span class="input-group-text" id="basic-addon1">CPF</span>
-                                                                    <input id="cpf" name="cpf" type="text" class="form-control" placeholder="CPF" aria-label="CPF" aria-describedby="basic-addon1" oninput="mCpf()">
-                                                                </div>
-                                                                <input type="hidden" id="nivel" name="nivel" value="1">
-                                                            </div>
-                                                        </form>
-                                                    <div class="modal-footer">
-                                                    <button type="button" class="btn btn-primary" onclick="Cadastrar()">Create</button>
-                                                    </div>
-                                                </div>
-                                                </div>
+                                                </form>
+                                            <div class="modal-footer">
+                                            <button type="button" class="btn btn-primary" onclick="Cadastrar()">Create</button>
                                             </div>
                                         </div>
-                                        
-                                    </form>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
