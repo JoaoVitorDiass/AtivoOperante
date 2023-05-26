@@ -66,8 +66,7 @@ public class CidadaoRestController {
     }
 
     @GetMapping("get-usuarios")
-    public ResponseEntity<Object> getUsuarios()
-    {
+    public ResponseEntity<Object> getUsuarios(){
         return ResponseEntity.ok().body(usuariorepo.findAll());  
     }
 }

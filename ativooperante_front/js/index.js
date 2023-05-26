@@ -17,14 +17,16 @@ function Cadastrar() {
             object[key] = value;
         });
         
-        if(document.getElementById("#id").value!=="")
+        if(document.getElementById("id").value!=="")
         {
-            object.id=document.getElementById("#id").value;
+            object.id=document.getElementById("id").value;
         }
+        console.log(object["cpf"])
+        object["cpf"] = $("#cpf").val().replaceAll(".","").replace("-","")
         var json = JSON.stringify(object);
-
-        const URL_TO_FETCH = "http://localhost:8080/apis/cidadao"
-
+        console.log(json)
+        const URL_TO_FETCH = "http://localhost:8080/apis/cidadao/add-usuario"
+        
         fetch(URL_TO_FETCH, {
             method: 'POST',
             body: json,
@@ -32,7 +34,16 @@ function Cadastrar() {
         })
         .then(response => response.json())
         .then(result => {
-            console.log(result)
+            window.parent.close()
+            Swal.fire({
+                toast: true,
+                icon: 'success',
+                title: 'Cadastrado com sucesso!',
+                showConfirmButton: false,
+                timer: 1400,
+                timerProgressBar: true,
+                position: 'top-right',
+            })
         })
         .catch(err => console.log(err));
 }
