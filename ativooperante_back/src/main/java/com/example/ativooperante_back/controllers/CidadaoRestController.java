@@ -14,6 +14,8 @@ import com.example.ativooperante_back.db.entidades.Usuario;
 import com.example.ativooperante_back.db.repository.DenunciaRepository;
 import com.example.ativooperante_back.db.repository.OrgaoRepository;
 import com.example.ativooperante_back.db.repository.TipoRepository;
+import com.example.ativooperante_back.db.repository.UsuarioRepository;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -30,6 +32,9 @@ public class CidadaoRestController {
 
     @Autowired
     DenunciaRepository denunciarepo;
+
+    @Autowired
+    UsuarioRepository usuariorepo;
 
     @GetMapping("get-orgaos")
     public ResponseEntity<Object> getOrgaos()
@@ -52,8 +57,17 @@ public class CidadaoRestController {
 
     @PostMapping("add-denuncia")
     public ResponseEntity <Object> addDenuncia(@RequestBody Denuncia denuncia) {
-        
         return ResponseEntity.ok().body(denunciarepo.save(denuncia));
     }
 
+    @PostMapping("add-usuario")
+    public ResponseEntity <Object> addUsuario(@RequestBody Usuario usuario){
+        return ResponseEntity.ok().body(usuariorepo.save(usuario));
+    }
+
+    @GetMapping("get-usuarios")
+    public ResponseEntity<Object> getUsuarios()
+    {
+        return ResponseEntity.ok().body(usuariorepo.findAll());  
+    }
 }
