@@ -10,6 +10,9 @@ function TipoDenuncia() {
 function Orgaos() {
     document.getElementById("mainIframe").src = "/ativooperante_front/view/orgaos.html"
 }
+function Usuarios() {
+    document.getElementById("mainIframe").src = "/ativooperante_front/view/usuarios.html"
+}
 
 $(document).ready(() => {
     $(".nav-link").on('click', () =>{ 
