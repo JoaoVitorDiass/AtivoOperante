@@ -44,12 +44,12 @@
                                     <form>
                                         <p>Please login to your account</p>
                                         <div class="form-outline mb-1">
-                                            <input type="email" id="form2Example11" class="form-control"/>
+                                            <input type="email" id="emailLogin" name="emailLogin" class="form-control"/>
                                             <label class="form-label" for="form2Example11">Username</label>
                                         </div>
 
                                         <div class="form-outline mb-1">
-                                            <input type="password" id="form2Example22" class="form-control" />
+                                            <input type="number" id="senhaLogin" name="senhaLogin" class="form-control senha" />
                                             <label class="form-label" for="form2Example22">Password</label>
                                         </div>
 
@@ -84,13 +84,13 @@
                                                         </div>
                                                         <div class="input-group mb-3">
                                                             <span class="input-group-text" id="basic-addon1">#</span>
-                                                            <input id="senha" name="senha" type="number" class="form-control" placeholder="Senha" aria-label="senha" aria-describedby="basic-addon1">
+                                                            <input id="senha" name="senha" type="number" class="form-control senha" placeholder="Senha" aria-label="senha" aria-describedby="basic-addon1">
                                                         </div>
                                                         <div class="input-group mb-3">
                                                             <span class="input-group-text" id="basic-addon1">CPF</span>
-                                                            <input id="cpf" name="cpf" type="text" class="form-control" placeholder="CPF" aria-label="CPF" aria-describedby="basic-addon1" oninput="mCpf()" >
+                                                            <input id="cpf" name="cpf" type="text" class="form-control" placeholder="CPF" aria-label="CPF" maxlength="14" aria-describedby="basic-addon1" oninput="mCpf()" >
                                                         </div>
-                                                        <input type="hidden" id="nivel" name="nivel" value="1">
+                                                        <input type="hidden" id="nivel" name="nivel" value="2">
                                                     </div>
                                                 </form>
                                             <div class="modal-footer">

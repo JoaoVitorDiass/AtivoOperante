@@ -8,6 +8,7 @@ function carregaDados() {
 
     fetch(URL_TO_FETCH, {
         method: 'GET',
+        headers: { 'Authorization': `${localStorage.getItem("token")}`, }
     })
     .then(response => response.json())
     .then(result => {
@@ -134,6 +135,7 @@ function deletar(id) {
     // const URL_TO_FETCH = "http://192.168.0.135:8080/apis/admin/del-denuncia/"+id
     fetch(URL_TO_FETCH, {
         method: 'GET',
+        headers: { 'Authorization': `${localStorage.getItem("token")}`, }
     })
     .then(response => response.text())
     .then(result => {

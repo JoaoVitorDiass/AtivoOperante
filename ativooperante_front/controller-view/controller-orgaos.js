@@ -8,10 +8,10 @@ function carregaDados() {
 
     fetch(URL_TO_FETCH, {
         method: 'GET',
+        headers: { 'Authorization': `${localStorage.getItem("token")}`, }
     })
     .then(response => response.json())
     .then(result => {
-        console.log(result)
         if (!$.fn.dataTable.isDataTable('#orgaos')) {
             $('#orgaos').DataTable({
                 data: result,
@@ -142,7 +142,8 @@ function enviarOrgao(){
         fetch(URL_TO_FETCH, {
             method: 'POST',
             body: json,
-            headers:{"content-type":"application/json"},
+            headers:{"content-type":"application/json",
+                    'Authorization': `${localStorage.getItem("token")}`},
         })
         .then(response => response.json())
         .then(result => {
@@ -161,10 +162,10 @@ function deletar(id) {
     // const URL_TO_FETCH = "http://192.168.0.135:8080/apis/admin/del-tipo/"+id;
     fetch(URL_TO_FETCH, {
         method: 'GET',
+        headers: { 'Authorization': `${localStorage.getItem("token")}`, }
     })
     .then(response => response.text())
     .then(result => {
-        console.log(result)
         window.location.reload()
     })
     .catch(err => console.log(err));
