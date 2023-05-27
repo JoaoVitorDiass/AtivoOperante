@@ -65,7 +65,8 @@ function enviarDenuncia() {
         fetch(URL_TO_FETCH, {
             method: 'POST',
             body: json2,
-            headers:{"content-type":"application/json"},
+            headers:{"content-type":"application/json",
+                    'Authorization': `${localStorage.getItem("token")}`},
         })
         .then(response => response.text())
         .then(result => {
@@ -127,6 +128,7 @@ function CarregarFormulario() {
 
     fetch(URL_ORGAO, {
         method: 'GET',
+        headers: { 'Authorization': `${localStorage.getItem("token")}`, }
     })
     .then(response => response.json())
     .then(result => {

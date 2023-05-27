@@ -15,6 +15,8 @@ import com.example.ativooperante_back.db.repository.DenunciaRepository;
 import com.example.ativooperante_back.db.repository.OrgaoRepository;
 import com.example.ativooperante_back.db.repository.TipoRepository;
 
+import jakarta.servlet.http.HttpServletRequest;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -29,18 +31,33 @@ public class AdminRestController {
     @Autowired
     private DenunciaRepository denunciaRepo;
 
+    @Autowired
+    HttpServletRequest request;
+
     /* CRUD de orgaos */
     @PostMapping(value="save-orgao")
     public ResponseEntity <Object> saveOrgao(@RequestBody Orgao orgao) {
-        return ResponseEntity.ok().body(orgaoRepo.save(orgao));
+        String nivel = (String)request.getAttribute("nivel");
+        if(nivel.equals("1")){
+            return ResponseEntity.ok().body(orgaoRepo.save(orgao)); 
+        }
+        else {
+            return ResponseEntity.ok().body("não autorizado");
+        }
     }
 
     @GetMapping("del-orgao/{id}")
     public ResponseEntity<Object> delOrgao(@PathVariable(value="id") int id)
     {
         try{
-            orgaoRepo.deleteById((long)id);
-            return ResponseEntity.ok().body("deletado com sucesso");
+            String nivel = (String)request.getAttribute("nivel");
+            if(nivel.equals("1")){
+                orgaoRepo.deleteById((long)id);
+                return ResponseEntity.ok().body("deletado com sucesso");
+            }
+            else {
+                return ResponseEntity.ok().body("não autorizado");
+            }
         }
         catch(Exception e)
         {
@@ -51,43 +68,76 @@ public class AdminRestController {
     @GetMapping("get-orgaos")
     public ResponseEntity<Object> getOrgaos()
     {
-        return ResponseEntity.ok().body(orgaoRepo.findAll(Sort.by("nome")));  
+        String nivel = (String)request.getAttribute("nivel");
+        if(nivel.equals("1")){
+            return ResponseEntity.ok().body(orgaoRepo.findAll(Sort.by("nome")));  
+        }
+        else {
+            return ResponseEntity.ok().body("não autorizado");
+        } 
     }
 
     /* CRUD de tipos */
     @GetMapping("get-tipos")
     public ResponseEntity<Object> getTipos()
     {
-        return ResponseEntity.ok().body(tipoRepo.findAll(Sort.by("nome")));  
+        String nivel = (String)request.getAttribute("nivel");
+        if(nivel.equals("1")){
+            return ResponseEntity.ok().body(tipoRepo.findAll(Sort.by("nome")));  
+        }
+        else {
+            return ResponseEntity.ok().body("não autorizado");
+        }
     }
     @PostMapping(value="save-tipo")
     public ResponseEntity <Object> saveTipo(@RequestBody Tipo tipo) {
-        return ResponseEntity.ok().body(tipoRepo.save(tipo));
+        String nivel = (String)request.getAttribute("nivel");
+        if(nivel.equals("1")){
+            return ResponseEntity.ok().body(tipoRepo.save(tipo));
+        }
+        else {
+            return ResponseEntity.ok().body("não autorizado");
+        }
+        
     }
 
     @GetMapping("del-tipo/{id}")
     public ResponseEntity<Object> delTipo(@PathVariable(value="id") int id)
     {
         try{
-            tipoRepo.deleteById((long)id);
-            return ResponseEntity.ok().body("deletado com sucesso");
+            String nivel = (String)request.getAttribute("nivel");
+            System.out.println(nivel);
+            if(nivel.equals("1")){
+                System.out.println(id);
+                tipoRepo.deleteById((long)id);
+                return ResponseEntity.ok().body("deletado com sucesso");
+            }
+            else {
+                return ResponseEntity.ok().body("não autorizado");
+            }
         }
         catch(Exception e)
         {
             return ResponseEntity.badRequest().body(e.getMessage());  
         }
     }
- 
+
     /* Denuncia: adicionar FeedBack */
     @GetMapping("add-feedback/{den_id}/{texto}")
     public ResponseEntity <Object> addFeedback(@PathVariable(value="den_id") Long den_id, @PathVariable(value="texto") String texto) 
     {
         try{
-            denunciaRepo.addFeedback(den_id, texto);
-            return ResponseEntity.ok().body("inserido com sucesso");
+            String nivel = (String)request.getAttribute("nivel");
+            if(nivel.equals("1")){
+                denunciaRepo.addFeedback(den_id, texto);
+                return ResponseEntity.ok().body("inserido com sucesso");
+            }
+            else {
+                return ResponseEntity.ok().body("não autorizado");
+            }
         }
         catch(Exception e){                                        
-           return ResponseEntity.badRequest().body("--->"+e.getMessage());
+            return ResponseEntity.badRequest().body("--->"+e.getMessage());
         }
     }
 
@@ -96,9 +146,15 @@ public class AdminRestController {
     public ResponseEntity<Object> delDenuncia(@PathVariable(value="id") int id)
     {
         try{
-            // resolver a deleção de um possível feedback
-            denunciaRepo.deleteById((long)id);
-            return ResponseEntity.ok().body("deletado com sucesso");
+            String nivel = (String)request.getAttribute("nivel");
+            if(nivel.equals("1")){
+                // resolver a deleção de um possível feedback
+                denunciaRepo.deleteById((long)id);
+                return ResponseEntity.ok().body("deletado com sucesso");
+            }
+            else {
+                return ResponseEntity.ok().body("não autorizado");
+            }
         }
         catch(Exception e)
         {

@@ -8,6 +8,7 @@ function carregaDados() {
 
     fetch(URL_TO_FETCH, {
         method: 'GET',
+        headers: { 'Authorization': `${localStorage.getItem("token")}`, }
     })
     .then(response => response.json())
     .then(result => {
@@ -141,7 +142,9 @@ function enviarTipo(){
         fetch(URL_TO_FETCH, {
             method: 'POST',
             body: json,
-            headers:{"content-type":"application/json"},
+            headers:{   'Authorization': ""+localStorage.getItem("token"),
+                        "content-type":"application/json",
+                    },
         })
         .then(response => response.json())
         .then(result => {
@@ -153,12 +156,13 @@ function enviarTipo(){
 
 function deletar(id) {
     // para usar na propria maquina
-    const URL_TO_FETCH = "http://localhost:8080/apis/admin/save-tipo"
+    const URL_TO_FETCH = "http://localhost:8080/apis/admin/del-tipo/"+id;
     
     // para usar na outra maquina
     // const URL_TO_FETCH = "http://192.168.0.135:8080/apis/admin/del-tipo/"+id;
     fetch(URL_TO_FETCH, {
         method: 'GET',
+        headers: { 'Authorization': `${localStorage.getItem("token")}`,}
     })
     .then(response => response.text())
     .then(result => {
@@ -180,9 +184,6 @@ function validarCampos() {
     }
     return true;
 }
-
-
-
 
 $(document).ready(() => {
     carregaDados()

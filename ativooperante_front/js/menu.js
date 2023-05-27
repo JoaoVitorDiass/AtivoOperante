@@ -14,6 +14,10 @@ function Usuarios() {
     document.getElementById("mainIframe").src = "/ativooperante_front/view/usuarios.html"
 }
 
+function logout() {
+    localStorage.removeItem("token")
+    window.location.href = "/ativooperante_front/index.html"
+}
 $(document).ready(() => {
     $(".nav-link").on('click', () =>{ 
         let iframe = document.getElementById("mainIframe")

@@ -8,7 +8,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.example.ativooperante_back.db.entidades.Denuncia;
-import com.example.ativooperante_back.db.entidades.Feedback;
 import com.example.ativooperante_back.db.entidades.Usuario;
 
 import jakarta.transaction.Transactional;
