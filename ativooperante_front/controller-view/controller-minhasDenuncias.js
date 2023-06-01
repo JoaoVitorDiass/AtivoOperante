@@ -1,5 +1,4 @@
 function carregaDados() {
-
     // para usar na propria maquina
     const URL_TO_FETCH = "http://localhost:8080/apis/cidadao/get-denuncia/2";
 
@@ -49,7 +48,7 @@ function carregaDados() {
 
                                 return `<i class="fa-solid fa-trash text-lg" onclick="deletar(${data})">
                                     </i>
-                                    <i class="fa-solid fa-pen-to-square text-lg" onclick="Modal(${data}, 'Alterar')">
+                                    <i class="fa-solid fa-pen-to-square text-lg" onclick="alterar(${data})">
                                     </i>`
                             }
 
@@ -129,7 +128,7 @@ function carregaDados() {
 
 function deletar(id) {
     // para usar na propria maquina
-    const URL_TO_FETCH = "http://localhost:8080/apis/admin/del-denuncia"+id
+    const URL_TO_FETCH = "http://localhost:8080/apis/admin/del-denuncia/"+id
     
     // para usar na outra maquina
     // const URL_TO_FETCH = "http://192.168.0.135:8080/apis/admin/del-denuncia/"+id
@@ -139,11 +138,10 @@ function deletar(id) {
     })
     .then(response => response.text())
     .then(result => {
-        console.log(result)
+        // console.log(result)
         window.location.reload()
     })
     .catch(err => console.log(err));
-
 }
 
 $(document).ready(() => {

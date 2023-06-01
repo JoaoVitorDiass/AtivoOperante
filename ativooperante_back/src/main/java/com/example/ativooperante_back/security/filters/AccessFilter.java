@@ -19,22 +19,24 @@ public class AccessFilter implements Filter {
             throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) request;
         String token = req.getHeader("Authorization"); 
-        System.out.println(token);
-        if(token!=null && JWTTokenProvider.verifyToken(token))
-        {   
-            Claims claims=JWTTokenProvider.getAllClaimsFromToken(token);
-            int nivel = (Integer)claims.get("nivel");
-            request.setAttribute("nivel", ""+nivel);
-            // response.setAttribute("nivel", ""+nivel);
+
+
+        if(req.getMethod().equals("OPTIONS")) {
             chain.doFilter(request, response);
         }
         else {
-            System.out.println("fala comigo bb");
-            
-            ((HttpServletResponse)response).setStatus(500);
-            response.getOutputStream().write("Não autorizado ".getBytes()); 
+            if(token!=null && JWTTokenProvider.verifyToken(token))
+            {   
+                Claims claims=JWTTokenProvider.getAllClaimsFromToken(token);
+                int nivel = (Integer)claims.get("nivel");
+                request.setAttribute("nivel", ""+nivel);
+                chain.doFilter(request, response);
+            }
+            else {
+                ((HttpServletResponse)response).setStatus(500);
+                response.getOutputStream().write("Não autorizado ".getBytes()); 
+            }
         }
-        
     }
 }
 

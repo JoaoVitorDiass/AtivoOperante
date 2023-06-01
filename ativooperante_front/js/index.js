@@ -1,19 +1,31 @@
 function logar() {
     if(validaCamposLogin()){
         // const URL_TO_FETCH = "http://192.168.0.135:8080/security/logar?email="+$("#emailLogin").val()+"&senha="+$("#senhaLogin").val()
-
-
+        localStorage.clear()
         const URL_TO_FETCH = "http://localhost:8080/security/logar?email="+$("#emailLogin").val()+"&senha="+$("#senhaLogin").val()
-    
         fetch(URL_TO_FETCH, {
             method: 'GET',
         })
         .then(response => response.text())
         .then(result => {
-            console.log(result)
             localStorage.setItem("token",result)
             if(result != "Usuario não aceito"){
-                window.location.href = "/ativooperante_front/view/menu.html";
+                localStorage.getItem("login")
+                if($("#flexCheckChecked").is(":checked")){
+                    localStorage.setItem("login",$("#emailLogin").val())
+                }
+                fetch("http://localhost:8080/apis/security/get-usuario?email=" + $("#emailLogin").val(), {
+                    method: 'GET',
+                    headers:{"content-type":"application/json"},
+                })
+                .then(response => response.json())
+                .then(result => {
+                    console.log(result)
+                    
+                    // window.location.href = "view/menu.html";
+                })
+                .catch(err => console.log(err));
+                // window.location.href = "view/menu.html";
             }
             else {
                 Swal.fire({
@@ -176,12 +188,16 @@ $(document).ready(function () {
         myInput.focus()
     })    
 
-    $('.btn-close').on('click',() => {
+    // $('.btn-close').on('click',() => {
         $("#senha").val("") 
         $("#email").val("") 
         $("#cpf").val("") 
-    });
+    // });
 
-    $("#emailLogin").val(localStorage.getItem("login"))
+    if(localStorage.getItem("login") != null) {
+        let a = document.getElementById("flexCheckChecked")
+        a.checked = true
+        $("#emailLogin").val(localStorage.getItem("login"))
+    }
 });
     

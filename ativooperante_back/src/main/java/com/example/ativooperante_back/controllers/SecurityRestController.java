@@ -3,6 +3,7 @@ package com.example.ativooperante_back.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,5 +41,9 @@ public class SecurityRestController {
     @GetMapping("get-usuarios")
     public ResponseEntity<Object> getUsuarios(){
         return ResponseEntity.ok().body(usuariorepo.findAll());  
+    }
+    @GetMapping("get-usuario/{email}")
+    public ResponseEntity<Object> getUsuaris(@PathVariable("email") String email){
+        return ResponseEntity.ok().body(usuariorepo.findByEmail(email));  
     }
 }

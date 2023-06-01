@@ -23,8 +23,8 @@ public class JWTTokenProvider {
             .claim("email", email)
             .claim("nivel", nivel)
             .setIssuedAt(new Date())
-            // .setExpiration(Date.from(LocalDateTime.now().plusMinutes(100L)
-            //     .atZone(ZoneId.systemDefault()).toInstant()))
+            .setExpiration(Date.from(LocalDateTime.now().plusMinutes(100L)
+                .atZone(ZoneId.systemDefault()).toInstant()))
             .signWith(CHAVE)
             .compact();
         return jwtToken;        
