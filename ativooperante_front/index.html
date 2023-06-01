@@ -50,7 +50,16 @@
 
                                         <div class="form-outline mb-1">
                                             <input type="number" id="senhaLogin" name="senhaLogin" class="form-control senha" />
-                                            <label class="form-label" for="form2Example22">Password</label>
+                                            <label class="form-label" for="form2Example22" style="display: flex;justify-content: space-between;">
+                                                Password
+                                                <span>
+                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
+                                                    <label class="form-check-label" for="flexCheckChecked">
+                                                        Remember Me
+                                                    </label>
+                                                </span>
+                                            </label>
+                                            
                                         </div>
 
                                         <div class="text-center pt-1 mb-1 pb-1">
@@ -59,7 +68,6 @@
                                                 Log in
                                             </button>
                                         </div>
-
                                         <div class="d-flex align-items-center justify-content-center pb-4">
                                             <p class="mb-0 me-2">Don't have an account?</p>
                                             <button type="button" class="btn btn-outline-danger" id="modalCadastrar" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
@@ -118,5 +126,4 @@
         </div>
     </section>
 </body>
-
 </html>
