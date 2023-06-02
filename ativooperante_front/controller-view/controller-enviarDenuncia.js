@@ -41,6 +41,7 @@ function enviarDenuncia() {
         })
         .then(response => response.text())
         .then(result => {
+            console.log(result)
             location.reload()
         })
         .catch(err => console.log(err));

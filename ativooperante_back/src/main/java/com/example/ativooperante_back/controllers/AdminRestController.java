@@ -122,6 +122,22 @@ public class AdminRestController {
         }
     }
 
+    @GetMapping("get-denuncias-all")
+    public ResponseEntity <Object> getDenunciasAll(){
+        try{
+            String nivel = (String)request.getAttribute("nivel");
+            if(nivel.equals("1")){
+                return ResponseEntity.ok().body(denunciaRepo.findAll(Sort.by("nome")));
+            }
+            else {
+                return ResponseEntity.ok().body("não autorizado");
+            }
+        }
+        catch(Exception e){                                        
+            return ResponseEntity.badRequest().body("--->"+e.getMessage());
+        } 
+    }
+
     /* Denuncia: adicionar FeedBack */
     @GetMapping("add-feedback/{den_id}/{texto}")
     public ResponseEntity <Object> addFeedback(@PathVariable(value="den_id") Long den_id, @PathVariable(value="texto") String texto) 

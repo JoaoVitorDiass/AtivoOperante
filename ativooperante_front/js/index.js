@@ -1,31 +1,22 @@
 function logar() {
     if(validaCamposLogin()){
-        // const URL_TO_FETCH = "http://192.168.0.135:8080/security/logar?email="+$("#emailLogin").val()+"&senha="+$("#senhaLogin").val()
+        
         localStorage.clear()
         const URL_TO_FETCH = "http://localhost:8080/security/logar?email="+$("#emailLogin").val()+"&senha="+$("#senhaLogin").val()
         fetch(URL_TO_FETCH, {
             method: 'GET',
         })
-        .then(response => response.text())
+        .then(response => response.json())
         .then(result => {
-            localStorage.setItem("token",result)
+            localStorage.setItem("token",result[0])
             if(result != "Usuario não aceito"){
-                localStorage.getItem("login")
+                localStorage.setItem("nivel",result[1])
+                localStorage.setItem("id",result[3])
+                console.log(result)
                 if($("#flexCheckChecked").is(":checked")){
                     localStorage.setItem("login",$("#emailLogin").val())
                 }
-                fetch("http://localhost:8080/apis/security/get-usuario?email=" + $("#emailLogin").val(), {
-                    method: 'GET',
-                    headers:{"content-type":"application/json"},
-                })
-                .then(response => response.json())
-                .then(result => {
-                    console.log(result)
-                    
-                    // window.location.href = "view/menu.html";
-                })
-                .catch(err => console.log(err));
-                // window.location.href = "view/menu.html";
+                window.location.href = "view/menu.html";
             }
             else {
                 Swal.fire({
@@ -37,6 +28,7 @@ function logar() {
         .catch(err => console.log(err));
     }
 }
+
 
 function Cadastrar() {
 
