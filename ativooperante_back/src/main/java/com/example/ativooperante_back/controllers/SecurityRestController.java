@@ -2,7 +2,6 @@ package com.example.ativooperante_back.controllers;
 
 import java.util.ArrayList;
 
-import org.hibernate.mapping.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;

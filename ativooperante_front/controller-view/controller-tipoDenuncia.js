@@ -88,12 +88,12 @@ function carregaDados() {
 
 function novo() {
     let formulario = `
-    <div style="width: 86%; margin: auto;">
+    <div style="width: 93%; margin: auto;">
         <button type="button" style="margin-bottom: 20px; padding: 5px 30px; font-weight: bold;" class="btn btn-danger" onclick="voltar()">Voltar</button>
     </div>
-    <form id="tipo" name="tipo" cellspacing="0" style="width:50%; margin: auto; margin-top: 50px;">
+    <form id="tipo" name="tipo" cellspacing="0" style="width:70%; margin: auto; padding: 50px; border: 1px solid rgba(0, 0, 0, 0.074); border-radius: 10px;box-shadow: 2px 9px 8px 0px rgba(240,240,240,1);">
 
-        <h1 style="text-align: center; margin-bottom: 40px;">Novo Tipo de Denúncia</h1>
+        <h1 style="text-align: center; margin-bottom: 40px;  color: rgb(57, 57, 212);">Novo Tipo de Denúncia</h1>
 
         <input type="hidden" id="id" name="id" value="">
 
@@ -110,7 +110,7 @@ function novo() {
         <button type="button" onclick="enviarTipo()" class="btn btn-primary btn-lg mb-4">Enviar</button>
         </div>
 
-        <div class="text" style="border: 2px solid rgba(72, 108, 226, 0.633); height: 160px; text-align: center;border-radius: 6px; display: flex; justify-content: center; align-items: center; margin: 0; padding: 7px; font-size: 15px; font-weight: bold; ">
+        <div class="text" style="border: 2px solid rgba(72, 108, 226, 0.633); text-align: center;border-radius: 6px; display: flex; justify-content: center; align-items: center; margin: 0; padding: 7px; font-size: 15px; font-weight: bold; ">
             <p>A denúncia é a peça acusatória iniciadora da ação penal pública (condicionada ou incondicionada). Consiste na explanação de fatos, com a devida indicação de provas, que constituem, em tese, ilícito penal, junto à manifestação expressa da vontade de que seja aplicada a lei penal a quem é presumivelmente o autor da conduta, a quem se firma a pretensão punitiva</p>
         </div>
     </form>

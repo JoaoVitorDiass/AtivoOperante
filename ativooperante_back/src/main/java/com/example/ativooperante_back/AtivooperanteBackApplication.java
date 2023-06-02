@@ -8,5 +8,5 @@ public class AtivooperanteBackApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(AtivooperanteBackApplication.class, args);
-	}
+	}	
 }

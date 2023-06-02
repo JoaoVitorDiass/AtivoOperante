@@ -8,7 +8,6 @@ function logar() {
         })
         .then(response => response.json())
         .then(result => {
-            
             if(result != "Usuario não aceito"){
                 localStorage.setItem("token",result[0]) // token
                 localStorage.setItem("nivel",result[1]) // nivel

@@ -1,5 +1,7 @@
 package com.example.ativooperante_back.controllers;
 
+import java.util.Base64;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
@@ -54,8 +56,14 @@ public class CidadaoRestController {
         return ResponseEntity.ok().body(denunciarepo.findAllByUsuario(usuario));
     }
 
+    @GetMapping("get-denuncia-id/{den_id}")
+    public ResponseEntity<Object> getDenunciaId(@PathVariable("den_id") int den_id) {
+        return ResponseEntity.ok().body(denunciarepo.findById((long)den_id));
+    }
+
     @PostMapping("add-denuncia")
     public ResponseEntity <Object> addDenuncia(@RequestBody Denuncia denuncia) {
+        denuncia.setTexto(new String(Base64.getDecoder().decode(denuncia.getTexto().getBytes())));
         return ResponseEntity.ok().body(denunciarepo.save(denuncia));
     }
 }
