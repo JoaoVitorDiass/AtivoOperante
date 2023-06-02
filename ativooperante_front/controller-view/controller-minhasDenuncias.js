@@ -1,9 +1,14 @@
 function carregaDados() {
-    // para usar na propria maquina
-    const URL_TO_FETCH = "http://localhost:8080/apis/cidadao/get-denuncia/2";
+/*
+    if(localStorage.getItem("token") > 1) {
+        
+    }
+    else {
 
-    // para usar com o live server em outro pc
-    // const URL_TO_FETCH = "http://192.168.0.135:8080/apis/cidadao/get-denuncia/2";
+    }*/
+        const URL_TO_FETCH = "http://localhost:8080/apis/cidadao/get-denuncia/"+localStorage.getItem("id");
+
+    // const URL_TO_FETCH = "http://localhost:8080/apis/admin/get-denuncias-all";
 
     fetch(URL_TO_FETCH, {
         method: 'GET',
@@ -11,6 +16,7 @@ function carregaDados() {
     })
     .then(response => response.json())
     .then(result => {
+        console.log(result)
         result.forEach(element => {
             switch(element.urgencia) {
                 case 1: element.urgencia = "Normal"; break;

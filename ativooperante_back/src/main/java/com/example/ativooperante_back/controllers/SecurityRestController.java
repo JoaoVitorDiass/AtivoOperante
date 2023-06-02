@@ -1,5 +1,8 @@
 package com.example.ativooperante_back.controllers;
 
+import java.util.ArrayList;
+
+import org.hibernate.mapping.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,7 +30,11 @@ public class SecurityRestController {
         Usuario u = usuariorepo.findByEmail(email);
         if(u != null) {   
             if(u.getSenha() == senha) {
-                return ResponseEntity.ok(JWTTokenProvider.getToken(u.getEmail(),u.getNivel()));
+                ArrayList<Object> obj = new ArrayList<>();
+                obj.add(JWTTokenProvider.getToken(u.getEmail(),u.getNivel()));
+                obj.add(u.getNivel());
+                obj.add(u.getId());
+                return ResponseEntity.ok(obj);
             }
         }
         return ResponseEntity.badRequest().body("Usuario não aceito");

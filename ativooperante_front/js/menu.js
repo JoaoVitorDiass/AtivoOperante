@@ -18,6 +18,15 @@ function logout() {
     localStorage.removeItem("token")
     window.location.href = "../index.html"
 }
+function verificaPermissoes() {
+    const nivel = localStorage.getItem("nivel")
+    if(nivel > 1){
+        $("#denuncias").hide()
+        $("#tiposDenucia").hide()
+        $("#orgaos").hide()
+    }
+}
+
 $(document).ready(() => {
     $(".nav-link").on('click', () =>{ 
         let iframe = document.getElementById("mainIframe")
@@ -27,4 +36,5 @@ $(document).ready(() => {
         iframe.classList.add("bg-white")
         iframe.classList.add("rounded")
     })
+    verificaPermissoes()
 })
