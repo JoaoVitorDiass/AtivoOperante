@@ -15,6 +15,8 @@ import jakarta.transaction.Transactional;
 public interface DenunciaRepository extends JpaRepository<Denuncia,Long> {
     public List <Denuncia> findAllByUsuario(Usuario usuario);
 
+    public List <Denuncia> findAll();
+    
     @Modifying
     @Transactional
     @Query(value="INSERT into feedback (fee_texto, den_id) VALUES (:texto,:den_id)",nativeQuery = true)

@@ -24,11 +24,11 @@ function enviarDenuncia() {
             "titulo": "${$("#titulo").val()}",
             "urgencia": ${$("#urgencia").val()},
             "usuario": {
-                "cpf": 47369606805,
-                "email": "JOOVITOR@GMAIL.COM",
-                "id": 2,
-                "nivel": 1,
-                "senha": 123
+                "cpf": null,
+                "email": null,
+                "id": ${localStorage.getItem("id")},
+                "nivel": ${localStorage.getItem("nivel")},
+                "senha": null
             }
         }`
         
