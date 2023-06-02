@@ -1,5 +1,6 @@
 package com.example.ativooperante_back.controllers;
 
+import java.util.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.ativooperante_back.db.entidades.Orgao;
 import com.example.ativooperante_back.db.entidades.Tipo;
 import com.example.ativooperante_back.db.repository.DenunciaRepository;
+import com.example.ativooperante_back.db.repository.FeedbackRepository;
 import com.example.ativooperante_back.db.repository.OrgaoRepository;
 import com.example.ativooperante_back.db.repository.TipoRepository;
 
@@ -30,6 +32,8 @@ public class AdminRestController {
     private TipoRepository tipoRepo;
     @Autowired
     private DenunciaRepository denunciaRepo;
+    @Autowired
+    private FeedbackRepository feedbackRepo;
 
     @Autowired
     HttpServletRequest request;
@@ -106,9 +110,7 @@ public class AdminRestController {
     {
         try{
             String nivel = (String)request.getAttribute("nivel");
-            System.out.println(nivel);
             if(nivel.equals("1")){
-                System.out.println(id);
                 tipoRepo.deleteById((long)id);
                 return ResponseEntity.ok().body("deletado com sucesso");
             }
@@ -145,7 +147,7 @@ public class AdminRestController {
         try{
             String nivel = (String)request.getAttribute("nivel");
             if(nivel.equals("1")){
-                denunciaRepo.addFeedback(den_id, texto);
+                denunciaRepo.addFeedback(den_id,new String(Base64.getEncoder().encode(texto.getBytes())));
                 return ResponseEntity.ok().body("inserido com sucesso");
             }
             else {
@@ -163,9 +165,8 @@ public class AdminRestController {
     {
         try{
             String nivel = (String)request.getAttribute("nivel");
-            System.out.println(nivel);
             if(nivel.equals("1")){
-                // resolver a deleção de um possível feedback
+                feedbackRepo.deleteByDenID((long)id);
                 denunciaRepo.deleteById((long)id);
                 return ResponseEntity.ok().body("deletado com sucesso");
             }

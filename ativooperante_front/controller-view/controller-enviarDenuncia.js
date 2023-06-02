@@ -16,7 +16,7 @@ function enviarDenuncia() {
                 "id": ${$("#orgao").val()},
                 "nome": "${document.querySelector("#orgao").options[document.querySelector("#orgao").selectedIndex].innerHTML}"
             },
-            "texto": "${$("#texto").val()}",
+            "texto": "${ btoa($("#texto").val())}",
             "tipo": {
                 "id": ${$("#tipo").val()},
                 "nome": "${document.querySelector("#tipo").options[document.querySelector("#tipo").selectedIndex].innerHTML}"
@@ -31,7 +31,6 @@ function enviarDenuncia() {
                 "senha": null
             }
         }`
-        
         fetch(URL_TO_FETCH, {
             method: 'POST',
             body: json2,

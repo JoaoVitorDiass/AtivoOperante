@@ -88,10 +88,10 @@ function carregaDados() {
 
 function novo() {
     let formulario = `
-    <div style="width: 86%; margin: auto;">
+    <div style="width: 93%; margin: auto;">
         <button type="button" style="margin-bottom: 20px; padding: 5px 30px; font-weight: bold;" class="btn btn-danger" onclick="voltar()">Voltar</button>
     </div>
-    <form id="orgao" name="orgao" cellspacing="0" style=" width:60%; margin: auto; padding: 50px; border: 1px solid rgba(0, 0, 0, 0.074); border-radius: 10px;box-shadow: 2px 9px 8px 0px rgba(240,240,240,1);;
+    <form id="orgao" name="orgao" cellspacing="0" style=" width:70%; margin: auto; padding: 50px; border: 1px solid rgba(0, 0, 0, 0.074); border-radius: 10px;box-shadow: 2px 9px 8px 0px rgba(240,240,240,1);
     ">
 
         <h1 style="text-align: center; margin-bottom: 40px; color: rgb(57, 57, 212);">Novo Orgão</h1>
@@ -111,7 +111,7 @@ function novo() {
             <button type="button" onclick="enviarOrgao()" class="btn btn-primary btn-lg mb-4">Enviar</button>
         </div>
 
-        <div class="text" style="border: 2px solid rgba(72, 108, 226, 0.633); height: 120px; text-align: center;border-radius: 6px; display: flex; justify-content: center; align-items: center; margin: 0; padding: 3px; font-size: 15px; font-weight: bold; ">
+        <div class="text" style="border: 2px solid rgba(72, 108, 226, 0.633); text-align: center;border-radius: 6px; display: flex; justify-content: center; align-items: center; margin: 0; padding: 3px; font-size: 15px; font-weight: bold; ">
             <p>A Segurança Pública é um dever do Estado, uma responsabilidade e direito de todos, visando, assim, garantir a ordem pública e a proteção de todos os cidadãos brasileiros (independente de qualquer situação).</p>
         </div>
 
