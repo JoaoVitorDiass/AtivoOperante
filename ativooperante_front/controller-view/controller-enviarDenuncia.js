@@ -32,7 +32,6 @@ function enviarDenuncia() {
             }
         }`
         
-        console.log(denuncia)
         fetch(URL_TO_FETCH, {
             method: 'POST',
             body: json2,
@@ -41,7 +40,6 @@ function enviarDenuncia() {
         })
         .then(response => response.text())
         .then(result => {
-            console.log(result)
             location.reload()
         })
         .catch(err => console.log(err));

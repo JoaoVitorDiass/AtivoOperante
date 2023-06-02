@@ -70,7 +70,7 @@ function Cadastrar() {
                 icon: 'success',
                 title: 'Cadastrado com sucesso!',
                 showConfirmButton: false,
-                timer: 1400,
+                timer: 1800,
                 timerProgressBar: true,
                 position: 'top-right',
             })

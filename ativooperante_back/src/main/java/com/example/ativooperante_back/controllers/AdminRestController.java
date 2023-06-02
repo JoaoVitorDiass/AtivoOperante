@@ -163,6 +163,7 @@ public class AdminRestController {
     {
         try{
             String nivel = (String)request.getAttribute("nivel");
+            System.out.println(nivel);
             if(nivel.equals("1")){
                 // resolver a deleção de um possível feedback
                 denunciaRepo.deleteById((long)id);
