@@ -16,6 +16,7 @@ function consultaAdmin() {
     })
     .then(response => response.json())
     .then(result => {
+        console.log(result)
         result.forEach(element => {
             switch(element.urgencia) {
                 case 1: element.urgencia = "Normal"; break;
@@ -50,11 +51,14 @@ function consultaAdmin() {
                         "data": 'id',
                         render: function (data, type) {
                             if (type === 'display') {
-    
-                                return `<i class="fa-solid fa-trash text-lg" onclick="deletar(${data})">
-                                    </i>
-                                    <i class="fa-solid fa-pen-to-square text-lg" onclick="alterar(${data})">
-                                    </i>`
+                                console.log(data + " - " + type)
+                                let html = `<i class="fa-solid fa-trash text-lg" onclick="deletar(${data})"></i>  `
+
+
+                                html +=    `<i class="fa-solid fa-comment-dots text-lg" onclick="feedback(${data})"></i>`
+
+
+                                return html
                             }
     
                             return data;
@@ -63,7 +67,7 @@ function consultaAdmin() {
                 ],
                 "ordering": false,
                 "searching": false,
-                "pageLength": 7,
+                "pageLength": 10,
                 "lengthChange": false,
                 language: {
                     "info": "Exibindo de _START_ a _END_ de _TOTAL_ registros",
@@ -168,24 +172,10 @@ function consultaUsuario() {
                     {
                         "data": "data",
                     },
-                    {
-                        "data": 'id',
-                        render: function (data, type) {
-                            if (type === 'display') {
-    
-                                return `<i class="fa-solid fa-trash text-lg" onclick="deletar(${data})">
-                                    </i>
-                                    <i class="fa-solid fa-pen-to-square text-lg" onclick="alterar(${data})">
-                                    </i>`
-                            }
-    
-                            return data;
-                        },
-                    },
                 ],
                 "ordering": false,
                 "searching": false,
-                "pageLength": 7,
+                "pageLength": 10,
                 "lengthChange": false,
                 language: {
                     "info": "Exibindo de _START_ a _END_ de _TOTAL_ registros",
@@ -265,10 +255,53 @@ function deletar(id) {
     })
     .then(response => response.text())
     .then(result => {
-        // console.log(result)
         window.location.reload()
     })
     .catch(err => console.log(err));
+}
+
+function feedback(id) {
+    
+    let formulario = `
+    <div style="width: 86%; margin: auto;">
+        <button type="button" style="margin-bottom: 20px; padding: 5px 30px; font-weight: bold;" class="btn btn-danger" onclick="voltar()">Voltar</button>
+    </div>
+    <form id="tipo" name="tipo" cellspacing="0" style="width:50%; margin: auto; margin-top: 50px">
+
+        <h1 style="text-align: center; margin-bottom: 40px;">Enviar Feedback</h1>
+
+        <input type="hidden" id="id" name="id" value="">
+
+        <div class="form-outline mb-4">
+        <textarea class="form-control" id="texto" name="texto" rows="4"></textarea>
+            <label class="form-label" for="titulo">Descrição
+                <span style="font-weight: bold; color: red;">*</span>
+            </label>
+        </div>
+
+        <!-- Submit button -->
+        <button type="button" onclick="enviarFeedback(${id})" class="btn btn-primary btn-block mb-4">Enviar</button>
+    </form>`
+    const URL_TO_FETCH = "";
+    $("body").empty()
+    $("body").append(formulario)
+}
+function enviarFeedback(id) {
+    const URL_TO_FETCH = `http://localhost:8080/apis/admin/add-feedback/${id}/${$("#texto").val()}`
+    fetch(URL_TO_FETCH, {
+        method: 'GET',
+        headers: { 'Authorization': `${localStorage.getItem("token")}`, }
+    })
+    .then(response => response.text())
+    .then(result => {
+        
+        window.location.reload()
+    })
+    .catch(err => console.log(err));
+}
+
+function voltar() {
+    document.location.reload()
 }
 
 $(document).ready(() => {
