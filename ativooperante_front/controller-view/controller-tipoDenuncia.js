@@ -91,7 +91,7 @@ function novo() {
     <div style="width: 86%; margin: auto;">
         <button type="button" style="margin-bottom: 20px; padding: 5px 30px; font-weight: bold;" class="btn btn-danger" onclick="voltar()">Voltar</button>
     </div>
-    <form id="tipo" name="tipo" cellspacing="0" style="width:50%; margin: auto; margin-top: 50px">
+    <form id="tipo" name="tipo" cellspacing="0" style="width:50%; margin: auto; margin-top: 50px;">
 
         <h1 style="text-align: center; margin-bottom: 40px;">Novo Tipo de Denúncia</h1>
 
@@ -106,7 +106,13 @@ function novo() {
         </div>
 
         <!-- Submit button -->
-        <button type="button" onclick="enviarTipo()" class="btn btn-primary btn-block mb-4">Enviar</button>
+        <div style="width: 100%;height: 70px; display: flex; justify-content: center;">
+        <button type="button" onclick="enviarTipo()" class="btn btn-primary btn-lg mb-4">Enviar</button>
+        </div>
+
+        <div class="text" style="border: 2px solid rgba(72, 108, 226, 0.633); height: 160px; text-align: center;border-radius: 6px; display: flex; justify-content: center; align-items: center; margin: 0; padding: 7px; font-size: 15px; font-weight: bold; ">
+            <p>A denúncia é a peça acusatória iniciadora da ação penal pública (condicionada ou incondicionada). Consiste na explanação de fatos, com a devida indicação de provas, que constituem, em tese, ilícito penal, junto à manifestação expressa da vontade de que seja aplicada a lei penal a quem é presumivelmente o autor da conduta, a quem se firma a pretensão punitiva</p>
+        </div>
     </form>
     `
     $("body").empty()

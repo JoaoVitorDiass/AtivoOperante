@@ -91,22 +91,30 @@ function novo() {
     <div style="width: 86%; margin: auto;">
         <button type="button" style="margin-bottom: 20px; padding: 5px 30px; font-weight: bold;" class="btn btn-danger" onclick="voltar()">Voltar</button>
     </div>
-    <form id="orgao" name="orgao" cellspacing="0" style="width:50%; margin: auto; margin-top: 50px">
+    <form id="orgao" name="orgao" cellspacing="0" style=" width:60%; margin: auto; padding: 50px; border: 1px solid rgba(0, 0, 0, 0.074); border-radius: 10px;box-shadow: 2px 9px 8px 0px rgba(240,240,240,1);;
+    ">
 
-        <h1 style="text-align: center; margin-bottom: 40px;">Novo Orgão</h1>
+        <h1 style="text-align: center; margin-bottom: 40px; color: rgb(57, 57, 212);">Novo Orgão</h1>
 
         <input type="hidden" id="id" name="id" value="">
 
         <!-- Text input -->
         <div class="form-outline mb-4">
             <input type="text" id="nome" name="nome" class="form-control" />
-            <label class="form-label" for="titulo">Nome
+            <label style="font-size: 18px; font-weight: 600;" class="form-label" for="titulo">Nome
                 <span style="font-weight: bold; color: red;">*</span>
             </label>
         </div>
 
         <!-- Submit button -->
-        <button type="button" onclick="enviarOrgao()" class="btn btn-primary btn-block mb-4">Enviar</button>
+        <div style="width: 100%;height: 70px; display: flex; justify-content: center;">
+            <button type="button" onclick="enviarOrgao()" class="btn btn-primary btn-lg mb-4">Enviar</button>
+        </div>
+
+        <div class="text" style="border: 2px solid rgba(72, 108, 226, 0.633); height: 120px; text-align: center;border-radius: 6px; display: flex; justify-content: center; align-items: center; margin: 0; padding: 3px; font-size: 15px; font-weight: bold; ">
+            <p>A Segurança Pública é um dever do Estado, uma responsabilidade e direito de todos, visando, assim, garantir a ordem pública e a proteção de todos os cidadãos brasileiros (independente de qualquer situação).</p>
+        </div>
+
     </form>
     `
     $("body").empty()
