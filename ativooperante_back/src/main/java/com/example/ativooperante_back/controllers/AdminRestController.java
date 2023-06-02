@@ -127,7 +127,7 @@ public class AdminRestController {
         try{
             String nivel = (String)request.getAttribute("nivel");
             if(nivel.equals("1")){
-                return ResponseEntity.ok().body(denunciaRepo.findAll(Sort.by("nome")));
+                return ResponseEntity.ok().body(denunciaRepo.findAll());
             }
             else {
                 return ResponseEntity.ok().body("não autorizado");

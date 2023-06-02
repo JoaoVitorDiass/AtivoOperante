@@ -21,7 +21,7 @@ function logout() {
 function verificaPermissoes() {
     const nivel = localStorage.getItem("nivel")
     if(nivel > 1){
-        $("#denuncias").hide()
+        // $("#denuncias").hide()
         $("#tiposDenucia").hide()
         $("#orgaos").hide()
     }

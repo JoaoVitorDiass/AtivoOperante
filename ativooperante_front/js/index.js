@@ -8,11 +8,12 @@ function logar() {
         })
         .then(response => response.json())
         .then(result => {
-            localStorage.setItem("token",result[0])
+            
             if(result != "Usuario não aceito"){
-                localStorage.setItem("nivel",result[1])
-                localStorage.setItem("id",result[3])
-                console.log(result)
+                localStorage.setItem("token",result[0]) // token
+                localStorage.setItem("nivel",result[1]) // nivel
+                localStorage.setItem("id",result[2])    // id
+
                 if($("#flexCheckChecked").is(":checked")){
                     localStorage.setItem("login",$("#emailLogin").val())
                 }
@@ -47,10 +48,10 @@ function Cadastrar() {
         object["cpf"] = $("#cpf").val().replaceAll(".","").replace("-","")
         var json = JSON.stringify(object);
         console.log(json)
-        
+
         // const URL_TO_FETCH = "http://192.168.0.135:8080/apis/security/add-usuario"
         
-        const URL_TO_FETCH = "http://localhost:8080/apis/security/add-usuario"
+        const URL_TO_FETCH = "http://localhost:8080/security/add-usuario"
         
         fetch(URL_TO_FETCH, {
             method: 'POST',
@@ -59,6 +60,10 @@ function Cadastrar() {
         })
         .then(response => response.json())
         .then(result => {
+
+            $("#email").val("")
+            $("#senha").val("")
+            $("#cpf").val("")
             $('.btn-close').trigger('click');
             Swal.fire({
                 toast: true,
@@ -69,6 +74,7 @@ function Cadastrar() {
                 timerProgressBar: true,
                 position: 'top-right',
             })
+            
         })
         .catch(err => console.log(err));
     }
